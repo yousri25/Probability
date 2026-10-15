@@ -6,6 +6,4 @@ A simple revision website for the Probability course (2026-27): combinatorics, e
 
 Open `index.html` in a browser, or enable **GitHub Pages** (Settings → Pages → `main` branch).
 
-## Note
-
-Solutions are not official corrections. Check them against your teacher's answers.
+Link : https://yousri25.github.io/Probability/
