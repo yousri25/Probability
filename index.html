@@ -32,7 +32,7 @@ img{max-width:100%;border-radius:12px;border:1px solid var(--bd);display:block;m
 table{border-collapse:collapse;width:100%;font-size:15px;display:block;overflow-x:auto}th,td{border:1px solid var(--bd);padding:7px 10px;text-align:left}th{background:var(--hl)}
 .toggle{float:right}
 </style></head><body>
-<nav><b>📘 Révisions</b><a href="#s1">Combinatoire</a><a href="#s2">Événements</a><a href="#s3">Conditionnelle</a><a href="#s4">Variables aléatoires</a><a href="#s5">Formulaire</a>
+<nav><b>📘 Révisions</b><a href="#s1">Combinatoire</a><a href="#s2">Événements</a><a href="#s3">Conditionnelle</a><a href="#s4">Variables aléatoires</a><a href="#s5">Lois usuelles</a><a href="#s6">Formulaire</a>
 <button class="toggle" onclick="var r=document.documentElement;r.dataset.theme=r.dataset.theme==='dark'?'light':'dark'" style="margin-left:auto;padding:4px 10px">◐</button></nav>
 <main>
 <header class="h"><h1>Calcul de probabilités & variables aléatoires</h1><p>Fiche de révision structurée d'après les cours 2026-27 · cliquez sur les exercices pour voir les corrigés.</p></header>
@@ -112,7 +112,38 @@ table{border-collapse:collapse;width:100%;font-size:15px;display:block;overflow-
 <details><summary>Fonction de répartition, P(½&lt;X&lt;1), E(X) et V(X)</summary><div class="sol">∫₀² (1−x/2)dx = 2−1 = 1 ✔.<br>F(x)=0 si x&lt;0 ; <b>x − x²/4</b> si 0≤x≤2 ; 1 si x&gt;2.<br>P(½&lt;X&lt;1)=F(1)−F(½)=3/4−7/16=<b>5/16</b>.<br>E(X)=∫(x−x²/2)dx=2−4/3=<b>2/3</b> · E(X²)=∫(x²−x³/2)dx=8/3−2=2/3 · V(X)=2/3−4/9=<b>2/9</b>.</div></details>
 </section>
 
-<section id="s5"><h2><i>5</i>Formulaire express</h2>
+<section id="s5"><h2><i>5</i>Lois de probabilité usuelles</h2>
+<p>Pour chaque loi : <b>quand l'utiliser</b>, la loi, E(X) et V(X).</p>
+<h3>Lois discrètes</h3>
+<div class="g">
+<div class="c def"><div class="tag">Bernoulli B(p)</div>Une expérience, 2 issues : succès (p) / échec (1−p).<div class="f">P(X=1)=p · P(X=0)=1−p</div><div class="f">E=p · V=p(1−p)</div></div>
+<div class="c def"><div class="tag">Binomiale B(n,p)</div>Nombre de succès en <i>n</i> répétitions indépendantes.<div class="f">P(X=k)=C<sub>n</sub><sup>k</sup> p<sup>k</sup>(1−p)<sup>n−k</sup></div><div class="f">E=np · V=np(1−p)</div></div>
+<div class="c def"><div class="tag">Géométrique G(p)</div>Rang du <b>premier</b> succès.<div class="f">P(X=k)=p(1−p)<sup>k−1</sup>, k≥1</div><div class="f">E=1/p · V=(1−p)/p²</div></div>
+<div class="c def"><div class="tag">Hypergéométrique H(N,n,p)</div>Tirage simultané (sans remise) de <i>n</i> boules parmi N (n₁ blanches, n₂ noires), p=n₁/N.<div class="f">P(X=k)=C<sub>n₁</sub><sup>k</sup> C<sub>n₂</sub><sup>n−k</sup> / C<sub>N</sub><sup>n</sup></div><div class="f">E=np · V=np(1−p)(1−(n−1)/(N−1))</div></div>
+<div class="c def"><div class="tag">Poisson P(λ)</div>Comptage d'événements sur une durée donnée (voitures au péage/heure, appels/minute).<div class="f">P(X=k)=e<sup>−λ</sup> λ<sup>k</sup>/k!</div><div class="f">E=λ · V=λ</div></div>
+</div>
+<div class="c warn"><div class="tag">Piège</div>Binomiale = avec remise (ou indépendance). Hypergéométrique = sans remise. Géométrique = on s'arrête au 1<sup>er</sup> succès.</div>
+<h3>Lois continues</h3>
+<div class="g">
+<div class="c def"><div class="tag">Uniforme U([a,b])</div><div class="f">f(x)=1/(b−a) sur [a,b]</div><div class="f">F(x)=(x−a)/(b−a) sur [a,b]</div><div class="f">E=(a+b)/2 · V=(b−a)²/12</div></div>
+<div class="c def"><div class="tag">Exponentielle E(λ), λ&gt;0</div><div class="f">f(x)=λe<sup>−λx</sup> (x≥0)</div><div class="f">F(x)=1−e<sup>−λx</sup> (x≥0)</div><div class="f">E=1/λ · V=1/λ²</div></div>
+<div class="c def"><div class="tag">Normale N(m,σ²)</div><div class="f">f(x)=1/(σ√(2π)) · e<sup>−(x−m)²/(2σ²)</sup></div><div class="f">E=m · V=σ²</div></div>
+</div>
+<h3>Loi normale centrée réduite : utiliser la table</h3>
+<div class="c"><b>Standardisation</b> : si X ~ N(m,σ²) alors Y=(X−m)/σ ~ N(0,1). On note Φ sa fonction de répartition.
+<div class="f">Φ(0)=1/2 · Φ(x)+Φ(−x)=1 · P(Z&gt;z)=1−Φ(z) · P(a&lt;Z&lt;b)=Φ(b)−Φ(a)</div>
+<b>Lire la table</b> : ligne = partie entière + 1<sup>re</sup> décimale, colonne = 2<sup>e</sup> décimale. Ex. z=1,24 → ligne 1,2 / colonne 0,04 → Φ=<b>0,8925</b>.<br>
+Valeurs clés : P(Z&gt;1,96)=0,025 · P(Z&gt;2,58)=0,005 · P(Z&gt;3,29)=0,0005.
+<p style="margin-top:12px"><b>Calculateur Φ(z)</b> (pour vérifier ta lecture de table) : z = <input id="zv" type="number" step="0.01" value="1.24" style="width:90px;font:inherit;padding:4px 8px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx)" oninput="phi()"></p>
+<div id="phr" class="sol" style="background:var(--hl);border-radius:8px;padding:8px 14px"></div></div>
+<h3>Exercices</h3>
+<details><summary>Pièce truquée lancée 5 fois, P(face)=5/7 : probabilité d'obtenir pile 3 fois</summary><div class="sol">X = nombre de piles ~ B(5, 2/7) (car P(pile)=1−5/7=2/7).<br>P(X=3)=C<sub>5</sub><sup>3</sup>(2/7)³(5/7)² = 10×8×25/7⁵ = 2000/16807 ≈ <b>0,119</b>.</div></details>
+<details><summary>Distributeur de banque : en moyenne 10 arrivées par 15 min. P(5 arrivées en 15 min)</summary><div class="sol">X ~ P(10) : P(X=5)=e<sup>−10</sup>·10⁵/5! = e<sup>−10</sup>×100000/120 ≈ <b>0,0378</b>.</div></details>
+<details><summary>X ~ N(0,1) : P(X≤1,23), P(X≥2,5), P(X≤−2)</summary><div class="sol">P(X≤1,23)=Φ(1,23)=<b>0,8907</b>.<br>P(X≥2,5)=1−Φ(2,5)=1−0,9938=<b>0,0062</b>.<br>P(X≤−2)=1−Φ(2)=1−0,9772=<b>0,0228</b>.</div></details>
+<details><summary>X ~ N(2,16) : P(X&gt;6) et P(4&lt;X&lt;16)</summary><div class="sol">m=2, σ=4, donc Z=(X−2)/4 ~ N(0,1).<br>P(X&gt;6)=P(Z&gt;1)=1−0,8413=<b>0,1587</b>.<br>P(4&lt;X&lt;16)=P(0,5&lt;Z&lt;3,5)=Φ(3,5)−Φ(0,5)=0,99977−0,6915≈<b>0,3083</b>.</div></details>
+</section>
+
+<section id="s6"><h2><i>6</i>Formulaire express</h2>
 <div class="c"><table><tr><th>Notion</th><th>Formule</th></tr>
 <tr><td>Permutation</td><td>n! · n!/(n₁!…n<sub>k</sub>!)</td></tr><tr><td>Arrangement</td><td>n!/(n−p)! · nᵖ</td></tr><tr><td>Combinaison</td><td>n!/(p!(n−p)!) · C<sub>n+p−1</sub><sup>p</sup></td></tr>
 <tr><td>Union</td><td>P(A)+P(B)−P(A∩B)</td></tr><tr><td>Indépendance</td><td>P(A∩B)=P(A)P(B)</td></tr><tr><td>Conditionnelle</td><td>P(A∩B)/P(B)</td></tr><tr><td>Totales / Bayes</td><td>ΣP(B|Aₙ)P(Aₙ) · P(B|Aₖ)P(Aₖ)/P(B)</td></tr>
@@ -120,6 +151,7 @@ table{border-collapse:collapse;width:100%;font-size:15px;display:block;overflow-
 <div class="c warn"><div class="tag">Réflexes</div>Ordre ? Répétition ? → formule. « Au moins un » → passer par le contraire. Cohérence : Σ des probabilités = 1, ∫f = 1.</div>
 </section></main>
 <script>
+function phi(){var z=parseFloat(document.getElementById('zv').value);if(isNaN(z))return;var t=1/(1+0.2316419*Math.abs(z)),d=0.3989423*Math.exp(-z*z/2),p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274))));var P=z>=0?1-p:p;document.getElementById('phr').innerHTML='Φ('+z+') ≈ <b>'+P.toFixed(4)+'</b> · P(Z&gt;'+z+') ≈ '+(1-P).toFixed(4)}phi();
 var a=[null,null];
 function q(i,v,b){a[i]=v;[].forEach.call(b.parentNode.children,function(x){if(x.tagName=='BUTTON')x.className=''});b.className='on';
 var r=document.getElementById('res');if(a[0]===null||a[1]===null){return}
