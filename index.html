@@ -129,6 +129,28 @@ table{border-collapse:collapse;width:100%;font-size:15px;display:block;overflow-
 <div class="c def"><div class="tag">Exponentielle E(λ), λ&gt;0</div><div class="f">f(x)=λe<sup>−λx</sup> (x≥0)</div><div class="f">F(x)=1−e<sup>−λx</sup> (x≥0)</div><div class="f">E=1/λ · V=1/λ²</div></div>
 <div class="c def"><div class="tag">Normale N(m,σ²)</div><div class="f">f(x)=1/(σ√(2π)) · e<sup>−(x−m)²/(2σ²)</sup></div><div class="f">E=m · V=σ²</div></div>
 </div>
+<h3>Depuis la densité : F(x), E(X), E(X²)</h3>
+<div class="c def"><div class="tag">Formules générales (cas continu, densité f)</div>
+<div class="f">F(x)=P(X≤x)=∫<sub>−∞</sub><sup>x</sup> f(t) dt</div>
+<div class="f">E(X)=∫<sub>−∞</sub><sup>+∞</sup> x·f(x) dx</div>
+<div class="f">E(X²)=∫<sub>−∞</sub><sup>+∞</sup> x²·f(x) dx</div>
+<div class="f">V(X)=E(X²)−(E(X))² · E(φ(X))=∫ φ(x)·f(x) dx</div>
+Rappels : f ≥ 0 et ∫f = 1 · f=F′ · P(a&lt;X&lt;b)=F(b)−F(a)=∫<sub>a</sub><sup>b</sup> f.<br>
+<b>Méthode</b> : on intègre seulement là où f ≠ 0 (les bornes de l'intégrale sont celles du support).</div>
+<div class="g">
+<div class="c"><div class="tag">Uniforme U([a,b])</div>F(x)=∫<sub>a</sub><sup>x</sup> dt/(b−a)=(x−a)/(b−a)
+<div class="f">E(X)=∫<sub>a</sub><sup>b</sup> x/(b−a) dx=(a+b)/2</div>
+<div class="f">E(X²)=∫<sub>a</sub><sup>b</sup> x²/(b−a) dx=(a²+ab+b²)/3</div>
+V=(a²+ab+b²)/3−(a+b)²/4=(b−a)²/12</div>
+<div class="c"><div class="tag">Exponentielle E(λ)</div>F(x)=∫<sub>0</sub><sup>x</sup> λe<sup>−λt</sup>dt=1−e<sup>−λx</sup>
+<div class="f">E(X)=∫<sub>0</sub><sup>∞</sup> xλe<sup>−λx</sup>dx=1/λ</div>
+<div class="f">E(X²)=∫<sub>0</sub><sup>∞</sup> x²λe<sup>−λx</sup>dx=2/λ²</div>
+V=2/λ²−1/λ²=1/λ² <small>(intégration par parties)</small></div>
+<div class="c"><div class="tag">Normale N(m,σ²)</div>F(x)=Φ((x−m)/σ) (pas de primitive : on utilise la table)
+<div class="f">E(X)=m</div>
+<div class="f">E(X²)=V(X)+(E(X))²=σ²+m²</div></div>
+</div>
+<details><summary>Exemple type : f(x)=1−x/2 sur [0,2] (cf. chapitre 4)</summary><div class="sol">F(x)=∫<sub>0</sub><sup>x</sup>(1−t/2)dt=<b>x−x²/4</b> (0≤x≤2).<br>E(X)=∫<sub>0</sub><sup>2</sup>(x−x²/2)dx=2−4/3=<b>2/3</b>.<br>E(X²)=∫<sub>0</sub><sup>2</sup>(x²−x³/2)dx=8/3−2=<b>2/3</b>.<br>V(X)=2/3−4/9=<b>2/9</b>.</div></details>
 <h3>Loi normale centrée réduite : utiliser la table</h3>
 <div class="c"><b>Standardisation</b> : si X ~ N(m,σ²) alors Y=(X−m)/σ ~ N(0,1). On note Φ sa fonction de répartition.
 <div class="f">Φ(0)=1/2 · Φ(x)+Φ(−x)=1 · P(Z&gt;z)=1−Φ(z) · P(a&lt;Z&lt;b)=Φ(b)−Φ(a)</div>
