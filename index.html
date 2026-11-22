@@ -32,7 +32,7 @@ img{max-width:100%;border-radius:12px;border:1px solid var(--bd);display:block;m
 table{border-collapse:collapse;width:100%;font-size:15px;display:block;overflow-x:auto}th,td{border:1px solid var(--bd);padding:7px 10px;text-align:left}th{background:var(--hl)}
 .toggle{float:right}
 </style></head><body>
-<nav><b>📘 Révisions</b><a href="#s1">Combinatoire</a><a href="#s2">Événements</a><a href="#s3">Conditionnelle</a><a href="#s4">Variables aléatoires</a><a href="#s5">Lois usuelles</a><a href="#s6">Formulaire</a>
+<nav><b>📘 Révisions</b><a href="#s1">Combinatoire</a><a href="#s2">Événements</a><a href="#s3">Conditionnelle</a><a href="#s4">Variables aléatoires</a><a href="#s5">Lois usuelles</a><a href="#s6">Couples de v.a.</a><a href="#s7">Formulaire</a>
 <button class="toggle" onclick="var r=document.documentElement;r.dataset.theme=r.dataset.theme==='dark'?'light':'dark'" style="margin-left:auto;padding:4px 10px">◐</button></nav>
 <main>
 <header class="h"><h1>Calcul de probabilités & variables aléatoires</h1><p>Fiche de révision structurée d'après les cours 2026-27 · cliquez sur les exercices pour voir les corrigés.</p></header>
@@ -165,11 +165,89 @@ Valeurs clés : P(Z&gt;1,96)=0,025 · P(Z&gt;2,58)=0,005 · P(Z&gt;3,29)=0,0005.
 <details><summary>X ~ N(2,16) : P(X&gt;6) et P(4&lt;X&lt;16)</summary><div class="sol">m=2, σ=4, donc Z=(X−2)/4 ~ N(0,1).<br>P(X&gt;6)=P(Z&gt;1)=1−0,8413=<b>0,1587</b>.<br>P(4&lt;X&lt;16)=P(0,5&lt;Z&lt;3,5)=Φ(3,5)−Φ(0,5)=0,99977−0,6915≈<b>0,3083</b>.</div></details>
 </section>
 
-<section id="s6"><h2><i>6</i>Formulaire express</h2>
+<section id="s6"><h2><i>6</i>Couples de variables aléatoires</h2>
+<div class="c def"><div class="tag">Définition</div>Soient X et Y deux v.a.r. sur (Ω, P(Ω), P). Le <b>couple</b> (X, Y) est l'application
+<div class="f">(X, Y) : Ω → ℝ² , ω ↦ (X(ω), Y(ω))</div></div>
+
+<h3>Loi d'un couple</h3>
+<div class="g">
+<div class="c"><h3 style="margin-top:0">Cas discret</h3>Loi <b>conjointe</b> : (xᵢ, yⱼ) ↦ P(X=xᵢ, Y=yⱼ)
+<div class="f">Σ<sub>xᵢ</sub> Σ<sub>yⱼ</sub> P(X=xᵢ, Y=yⱼ) = 1</div></div>
+<div class="c"><h3 style="margin-top:0">Cas continu</h3>Densité conjointe f(x,y) sur une réunion d'intervalles de ℝ²
+<div class="f">f(x,y) ≥ 0 et ∬<sub>ℝ²</sub> f(x,y) dx dy = 1</div></div>
+</div>
+
+<h3>Fonction de répartition</h3>
+<div class="c def"><div class="f">F<sub>(X,Y)</sub>(x,y) = P(X≤x, Y≤y)</div>
+<div class="f">Discret : F(x,y) = Σ<sub>xᵢ≤x</sub> Σ<sub>yⱼ≤y</sub> P(X=xᵢ, Y=yⱼ)</div>
+<div class="f">Continu : F(x,y) = ∫<sub>−∞</sub><sup>x</sup> ∫<sub>−∞</sub><sup>y</sup> f(u,v) dv du</div></div>
+
+<h3>Lois marginales</h3>
+<p>Ce sont les lois de X et de Y prises séparément, déduites de la loi du couple.</p>
+<div class="g">
+<div class="c def"><div class="tag">Discret</div><div class="f">P(X=xᵢ) = Σ<sub>yⱼ</sub> P(X=xᵢ, Y=yⱼ)</div><div class="f">P(Y=yⱼ) = Σ<sub>xᵢ</sub> P(X=xᵢ, Y=yⱼ)</div>Somme des lignes / des colonnes du tableau.</div>
+<div class="c def"><div class="tag">Continu</div><div class="f">f<sub>X</sub>(x) = ∫<sub>ℝ</sub> f(x,y) dy</div><div class="f">f<sub>Y</sub>(y) = ∫<sub>ℝ</sub> f(x,y) dx</div>On intègre sur l'autre variable.</div>
+</div>
+
+<h3>Exercice</h3>
+<div class="c">Loi du couple (X, Y) :
+<table><tr><th>X \ Y</th><th>0</th><th>1</th><th>2</th><th>3</th></tr>
+<tr><th>0</th><td>0,25</td><td>0,2</td><td>0,05</td><td>0</td></tr>
+<tr><th>1</th><td>0,2</td><td>0,1</td><td>0,05</td><td>0,05</td></tr>
+<tr><th>2</th><td>0,05</td><td>0,02</td><td>0,02</td><td>0,01</td></tr></table></div>
+<details><summary>Déterminer la loi de probabilité de X et celle de Y</summary><div class="sol">On additionne chaque <b>ligne</b> pour X et chaque <b>colonne</b> pour Y.
+<table><tr><th>x</th><th>0</th><th>1</th><th>2</th></tr><tr><td>P(X=x)</td><td>0,5</td><td>0,4</td><td>0,1</td></tr></table>
+<table><tr><th>y</th><th>0</th><th>1</th><th>2</th><th>3</th></tr><tr><td>P(Y=y)</td><td>0,5</td><td>0,32</td><td>0,12</td><td>0,06</td></tr></table>
+Vérification : 0,5+0,4+0,1 = 1 ✔ et 0,5+0,32+0,12+0,06 = 1 ✔.<br>
+Remarque : P(X=0, Y=3)=0 ≠ P(X=0)·P(Y=3)=0,5×0,06=0,03, donc X et Y ne sont <b>pas indépendantes</b>.</div></details>
+
+<h3>Indépendance</h3>
+<div class="c def"><div class="tag">X et Y indépendantes si</div>
+<div class="f">Discret : P(X=xᵢ, Y=yⱼ) = P(X=xᵢ)·P(Y=yⱼ) , ∀ xᵢ, yⱼ</div>
+<div class="f">Continu : f<sub>(X,Y)</sub>(x,y) = f<sub>X</sub>(x)·f<sub>Y</sub>(y) , ∀ x, y ∈ ℝ</div></div>
+<div class="g">
+<div class="c def"><div class="tag">Théorème 1</div>X et Y indépendantes ⇔
+<div class="f">F<sub>(X,Y)</sub>(x,y) = F<sub>X</sub>(x)·F<sub>Y</sub>(y) , ∀ x, y</div></div>
+<div class="c def"><div class="tag">Théorème 2 (X, Y indépendantes)</div>
+<div class="f">E(XY) = E(X)·E(Y)</div><div class="f">V(X+Y) = V(X) + V(Y)</div>
+Pour toutes fonctions g, h : g(X) et h(Y) sont indépendantes et
+<div class="f">E(g(X)h(Y)) = E(g(X))·E(h(Y))</div></div>
+</div>
+
+<h3>Calcul de E(XY)</h3>
+<div class="g">
+<div class="c"><div class="tag" style="color:var(--ac2)">Discret</div><div class="f">E(XY) = Σ<sub>xᵢ</sub> Σ<sub>yⱼ</sub> xᵢ yⱼ P(X=xᵢ, Y=yⱼ)</div></div>
+<div class="c"><div class="tag" style="color:var(--ac2)">Continu</div><div class="f">E(XY) = ∬<sub>ℝ²</sub> x y f<sub>(X,Y)</sub>(x,y) dx dy</div></div>
+</div>
+
+<h3>Somme de deux v.a. indépendantes</h3>
+<p>Soient X et Y indépendantes. Loi de X+Y :</p>
+<div class="g">
+<div class="c def"><div class="tag">Discret</div><div class="f">P(X+Y=k) = Σ<sub>i=0</sub><sup>k</sup> P(X=i, Y=k−i)</div>pour tout k ∈ (X+Y)(Ω) ; avec l'indépendance, P(X=i)·P(Y=k−i).</div>
+<div class="c def"><div class="tag">Continu (convolution)</div><div class="f">f<sub>X+Y</sub>(z) = ∫<sub>ℝ</sub> f<sub>X</sub>(z−t) f<sub>Y</sub>(t) dt</div>pour tout z ∈ ℝ.</div>
+</div>
+
+<h3>Covariance et corrélation</h3>
+<div class="g">
+<div class="c def"><div class="tag">Covariance</div><div class="f">cov(X,Y) = E(XY) − E(X)E(Y)</div></div>
+<div class="c def"><div class="tag">Coefficient de corrélation</div><div class="f">r(X,Y) = cov(X,Y) / ( √V(X) · √V(Y) )</div></div>
+</div>
+<div class="c"><div class="tag" style="color:var(--ac2)">Propriétés</div><ul style="margin:6px 0 0;padding-left:18px">
+<li>V(aX+bY) = a²V(X) + 2ab·cov(X,Y) + b²V(Y)</li>
+<li>cov(X,X) = V(X)</li>
+<li>cov(aX+bY, Z) = a·cov(X,Z) + b·cov(Y,Z)</li>
+<li>cov(X, aY+bZ) = a·cov(X,Y) + b·cov(X,Z)</li>
+<li>X, Y indépendantes ⇒ cov(X,Y) = 0</li>
+<li>−1 ≤ r(X,Y) ≤ 1</li></ul></div>
+<div class="c warn"><div class="tag">Piège</div>Indépendantes ⇒ cov(X,Y)=0, mais la <b>réciproque est fausse</b> : cov(X,Y)=0 n'implique pas que X et Y soient indépendantes.</div>
+</section>
+
+<section id="s7"><h2><i>7</i>Formulaire express</h2>
 <div class="c"><table><tr><th>Notion</th><th>Formule</th></tr>
 <tr><td>Permutation</td><td>n! · n!/(n₁!…n<sub>k</sub>!)</td></tr><tr><td>Arrangement</td><td>n!/(n−p)! · nᵖ</td></tr><tr><td>Combinaison</td><td>n!/(p!(n−p)!) · C<sub>n+p−1</sub><sup>p</sup></td></tr>
 <tr><td>Union</td><td>P(A)+P(B)−P(A∩B)</td></tr><tr><td>Indépendance</td><td>P(A∩B)=P(A)P(B)</td></tr><tr><td>Conditionnelle</td><td>P(A∩B)/P(B)</td></tr><tr><td>Totales / Bayes</td><td>ΣP(B|Aₙ)P(Aₙ) · P(B|Aₖ)P(Aₖ)/P(B)</td></tr>
-<tr><td>E, V</td><td>Σ xᵢpᵢ ou ∫xf · E(X²)−E(X)²</td></tr></table></div>
+<tr><td>E, V</td><td>Σ xᵢpᵢ ou ∫xf · E(X²)−E(X)²</td></tr>
+<tr><td>Marginales (couple)</td><td>P(X=xᵢ)=Σⱼ P(X=xᵢ,Y=yⱼ) · f<sub>X</sub>(x)=∫f(x,y)dy</td></tr><tr><td>Covariance</td><td>E(XY)−E(X)E(Y) · r=cov/(σ<sub>X</sub>σ<sub>Y</sub>)</td></tr></table></div>
 <div class="c warn"><div class="tag">Réflexes</div>Ordre ? Répétition ? → formule. « Au moins un » → passer par le contraire. Cohérence : Σ des probabilités = 1, ∫f = 1.</div>
 </section></main>
 <script>
